@@ -78,7 +78,7 @@ public class CyclesAndArrays {
          * граница показана символами ||, эти символы в массив не входят.
          */
 
-        int[] arr6 = {3, 3, 0, 3, 3};
+        int[] arr6 = {1,2,4};
         System.out.println(isBalance(arr6));
 
         /**
@@ -127,35 +127,20 @@ public class CyclesAndArrays {
         return max;
     }
 
-    private static boolean isBalance(int[] array) { //метод нахождения баланса между левой и правой частями массива
-        int countRight = 0; //счетчик количества суммирования в правой части массива
-        int countLeft = 0; // счетчик количества суммирования в левой части массива
-        int summLeft = array[0]; // суммой левой части массива изначально примем за 1й элемент
-        int summRight = array[array.length - 1]; // суммой правой части массива изначально примем за 1й элемент
-        for (int i = 1; i < array.length - 2; i++) {
-            if (countLeft + countRight + 2 == array.length) { // когда пройдем по всем элементам массива, выходим из цикла
-                break;
-            }
-            if (summLeft <= summRight) {
-                summLeft += array[i];
-                countLeft++;
+    private static boolean isBalance(int[] array) {
+        int left = 0; //сумма левой части
+        int right = 0; //сумма правой части
+        int count = 0; //счетчик цикла
+        for (int i = 0, j = array.length - 1; count != array.length; count++) {
+            if (left <= right) {
+                left += array[i];
+                i++;
             } else {
-                for (int j = array.length - countRight - 2; j > countLeft - 1; j--) {
-                    if (countLeft + countRight + 2 == array.length) { // // когда пройдем по всем элемнтам массива, выходим из цикла
-                        break;
-                    }
-                    if (summRight < summLeft) {
-                        summRight += array[j];
-                        countRight++;
-                    } else {
-                        summLeft += array[i];
-                        countLeft++;
-                        break;
-                    }
-                }
+                right += array[j];
+                j--;
             }
         }
-        return summLeft == summRight;
+        return left == right;
     }
 
     private static int[] changeArr(int[] array, int m) { //метод смещения элементов массива

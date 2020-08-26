@@ -1,4 +1,4 @@
-package Java_F1_P1_L1_Introduction_HW;
+package Java_F1_P1_HW;
 
 public class Introduction {
     public static void main(String[] args) {
